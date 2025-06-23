@@ -1,0 +1,93 @@
+#include <stdio.h>
+
+void imprimirTrianguloPascal(int altura) {
+    int triangulo[altura][altura];
+
+    // Preencher o triângulo
+    for (int linha = 0; linha < altura; linha++) {
+        // O primeiro e último elemento de cada linha é 1
+        triangulo[linha][0] = 1;
+        triangulo[linha][linha] = 1;
+
+        // Calcular os elementos internos
+        for (int coluna = 1; coluna < linha; coluna++) {
+            triangulo[linha][coluna] = triangulo[linha-1][coluna-1] + triangulo[linha-1][coluna];
+        }
+    }
+
+    // Imprimir o triângulo
+    for (int linha = 0; linha < altura; linha++) {
+        // Imprimir espaços para centralizar (opcional)
+        for (int espaco = 0; espaco < altura - linha - 1; espaco++) {
+            printf(" ");
+        }
+
+        // Imprimir os números da linha
+        for (int coluna = 0; coluna <= linha; coluna++) {
+            printf("%d ", triangulo[linha][coluna]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int altura;
+
+    printf("Digite a altura do Triângulo de Pascal: ");
+    scanf("%d", &altura);
+
+    imprimirTrianguloPascal(altura);
+
+    return 0;
+}
+
+
+
+
+
+2 atividade 
+
+#include <stdio.h>
+
+int Fatorial(int numero);
+
+int main(){
+    int altura;
+
+    printf("Digite a altura do triangulo: ");
+    scanf("%d", &altura);
+
+    int ajuste = altura;
+
+    for(int l = 0; l < altura; l++){
+        for(int i = 0; i < ajuste; i++){
+            printf(" ");
+        }
+        ajuste--;
+        
+        for(int c = 0; c < altura; c++){
+            if(l - c >= 0){
+                int resultado = Fatorial(l) / (Fatorial(c) * Fatorial(l - c));
+                printf("%d ", resultado);
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+int Fatorial(int numero){
+    int resultado = 1;
+
+    if (numero <= 0) {
+        return 1;
+    }
+    else{
+        do
+        {
+            resultado *= numero;
+            numero -= 1;
+        } while (numero > 0);
+        return resultado;
+    }
+}
